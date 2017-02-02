@@ -130,7 +130,7 @@ void AsyncWebServerRequest::_onData(void *buf, size_t len){
       }
     } else {
       if(_parsedLength == 0){
-        if(_contentType.startsWith("application/x-www-form-urlencoded")){
+        if(_contentType.startsWith(String(F("application/x-www-form-urlencoded")))){
           _isPlainPost = true;
         } else if(_contentType == "text/plain" && __is_param_char(((char*)buf)[0])){
           size_t i = 0;
@@ -471,7 +471,7 @@ void AsyncWebServerRequest::_parseMultipartPostByte(uint8_t data, bool last){
     }
   } else if(_multiParseState == DASH3_OR_RETURN2){
     if(data == '-' && (_contentLength - _parsedLength - 4) != 0){
-      os_printf("ERROR: The parser got to the end of the POST but is expecting %u bytes more!\nDrop an issue so we can have more info on the matter!\n", _contentLength - _parsedLength - 4);
+      os_printf("ERR: expect %u bytes more\n", _contentLength - _parsedLength - 4);
       _contentLength = _parsedLength + 4;//lets close the request gracefully
     }
     if(data == '\r'){
@@ -513,7 +513,7 @@ void AsyncWebServerRequest::_parseLine(){
     if(!_temp.length()){
       //end of headers
       if(_expectingContinue){
-        const char * response = "HTTP/1.1 100 Continue\r\n\r\n";
+        const char * response = String(F("HTTP/1.1 100 Continue\r\n\r\n")).c_str();
         _client->write(response, os_strlen(response));
       }
       //check handler for authentication
@@ -683,7 +683,7 @@ void AsyncWebServerRequest::send_P(int code, const String& contentType, PGM_P co
 
 void AsyncWebServerRequest::redirect(const String& url){
   AsyncWebServerResponse * response = beginResponse(302);
-  response->addHeader("Location",url);
+  response->addHeader(String(F("Location")),url);
   send(response);
 }
 
@@ -724,16 +724,16 @@ bool AsyncWebServerRequest::authenticate(const char * hash){
 void AsyncWebServerRequest::requestAuthentication(const char * realm, bool isDigest){
   AsyncWebServerResponse * r = beginResponse(401);
   if(!isDigest && realm == NULL){
-    r->addHeader("WWW-Authenticate", "Basic realm=\"Login Required\"");
+    r->addHeader(String(F("WWW-Authenticate")), String(F("Basic realm=\"Login Required\"")));
   } else if(!isDigest){
-    String header = "Basic realm=\"";
-    header.concat(realm);
-    header.concat("\"");
-    r->addHeader("WWW-Authenticate", header);
+    String header = String(F("Basic realm=\""));
+    header.concat(String(F(realm)));
+    header.concat(String(F("\"")));
+    r->addHeader(String(F("WWW-Authenticate")), header);
   } else {
-    String header = "Digest ";
+    String header = String(F("Digest "));
     header.concat(requestDigestAuthentication(realm));
-    r->addHeader("WWW-Authenticate", header);
+    r->addHeader(String(F("WWW-Authenticate")), header);
   }
   send(r);
 }
@@ -804,13 +804,13 @@ String AsyncWebServerRequest::urlDecode(const String& text) const {
 
 
 const char * AsyncWebServerRequest::methodToString() const {
-  if(_method == HTTP_ANY) return "ANY";
-  else if(_method & HTTP_GET) return "GET";
-  else if(_method & HTTP_POST) return "POST";
-  else if(_method & HTTP_DELETE) return "DELETE";
-  else if(_method & HTTP_PUT) return "PUT";
-  else if(_method & HTTP_PATCH) return "PATCH";
-  else if(_method & HTTP_HEAD) return "HEAD";
-  else if(_method & HTTP_OPTIONS) return "OPTIONS";
-  return "UNKNOWN";
+  if(_method == HTTP_ANY) return String(F("ANY")).c_str();
+  else if(_method & HTTP_GET) return String(F("GET")).c_str();
+  else if(_method & HTTP_POST) return String(F("POST")).c_str();
+  else if(_method & HTTP_DELETE) return String(F("DELETE")).c_str();
+  else if(_method & HTTP_PUT) return String(F("PUT")).c_str();
+  else if(_method & HTTP_PATCH) return String(F("PATCH")).c_str();
+  else if(_method & HTTP_HEAD) return String(F("HEAD")).c_str();
+  else if(_method & HTTP_OPTIONS) return String(F("OPTIONS")).c_str();
+  return String(F("UNKNOWN")).c_str();
 }

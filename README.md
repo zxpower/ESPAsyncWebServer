@@ -1,8 +1,6 @@
-# ESPAsyncWebServer [![Build Status](https://travis-ci.org/me-no-dev/ESPAsyncWebServer.svg?branch=master)](https://travis-ci.org/me-no-dev/ESPAsyncWebServer)
+# ESPAsyncWebServer
 
-For help and support [![Join the chat at https://gitter.im/me-no-dev/ESPAsyncWebServer](https://badges.gitter.im/me-no-dev/ESPAsyncWebServer.svg)](https://gitter.im/me-no-dev/ESPAsyncWebServer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-Async HTTP and WebSocket Server for ESP8266 Arduino
+Async HTTP and WebSocket Server for ESP8266 Arduino modified for use in [RYSTA.io](https://rysta.io/) devices.
 
 Requires [ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP) to work
 To use this library you might need to have the latest git versions of [ESP8266](https://github.com/esp8266/Arduino) Arduino Core

@@ -27,46 +27,46 @@
  * */
 const char* AsyncWebServerResponse::_responseCodeToString(int code) {
   switch (code) {
-    case 100: return "Continue";
-    case 101: return "Switching Protocols";
-    case 200: return "OK";
-    case 201: return "Created";
-    case 202: return "Accepted";
-    case 203: return "Non-Authoritative Information";
-    case 204: return "No Content";
-    case 205: return "Reset Content";
-    case 206: return "Partial Content";
-    case 300: return "Multiple Choices";
-    case 301: return "Moved Permanently";
-    case 302: return "Found";
-    case 303: return "See Other";
-    case 304: return "Not Modified";
-    case 305: return "Use Proxy";
-    case 307: return "Temporary Redirect";
-    case 400: return "Bad Request";
-    case 401: return "Unauthorized";
-    case 402: return "Payment Required";
-    case 403: return "Forbidden";
-    case 404: return "Not Found";
-    case 405: return "Method Not Allowed";
-    case 406: return "Not Acceptable";
-    case 407: return "Proxy Authentication Required";
-    case 408: return "Request Time-out";
-    case 409: return "Conflict";
-    case 410: return "Gone";
-    case 411: return "Length Required";
-    case 412: return "Precondition Failed";
-    case 413: return "Request Entity Too Large";
-    case 414: return "Request-URI Too Large";
-    case 415: return "Unsupported Media Type";
-    case 416: return "Requested range not satisfiable";
-    case 417: return "Expectation Failed";
-    case 500: return "Internal Server Error";
-    case 501: return "Not Implemented";
-    case 502: return "Bad Gateway";
-    case 503: return "Service Unavailable";
-    case 504: return "Gateway Time-out";
-    case 505: return "HTTP Version not supported";
+    case 100: return String(F("Continue")).c_str();
+    case 101: return String(F("Switching Protocols")).c_str();
+    case 200: return String(F("OK")).c_str();
+    case 201: return String(F("Created")).c_str();
+    case 202: return String(F("Accepted")).c_str();
+    case 203: return String(F("Non-Authoritative Information")).c_str();
+    case 204: return String(F("No Content")).c_str();
+    case 205: return String(F("Reset Content")).c_str();
+    case 206: return String(F("Partial Content")).c_str();
+    case 300: return String(F("Multiple Choices")).c_str();
+    case 301: return String(F("Moved Permanently")).c_str();
+    case 302: return String(F("Found")).c_str();
+    case 303: return String(F("See Other")).c_str();
+    case 304: return String(F("Not Modified")).c_str();
+    case 305: return String(F("Use Proxy")).c_str();
+    case 307: return String(F("Temporary Redirect")).c_str();
+    case 400: return String(F("Bad Request")).c_str();
+    case 401: return String(F("Unauthorized")).c_str();
+    case 402: return String(F("Payment Required")).c_str();
+    case 403: return String(F("Forbidden")).c_str();
+    case 404: return String(F("Not Found")).c_str();
+    case 405: return String(F("Method Not Allowed")).c_str();
+    case 406: return String(F("Not Acceptable")).c_str();
+    case 407: return String(F("Proxy Authentication Required")).c_str();
+    case 408: return String(F("Request Time-out")).c_str();
+    case 409: return String(F("Conflict")).c_str();
+    case 410: return String(F("Gone")).c_str();
+    case 411: return String(F("Length Required")).c_str();
+    case 412: return String(F("Precondition Failed")).c_str();
+    case 413: return String(F("Request Entity Too Large")).c_str();
+    case 414: return String(F("Request-URI Too Large")).c_str();
+    case 415: return String(F("Unsupported Media Type")).c_str();
+    case 416: return String(F("Requested range not satisfiable")).c_str();
+    case 417: return String(F("Expectation Failed")).c_str();
+    case 500: return String(F("Internal Server Error")).c_str();
+    case 501: return String(F("Not Implemented")).c_str();
+    case 502: return String(F("Bad Gateway")).c_str();
+    case 503: return String(F("Service Unavailable")).c_str();
+    case 504: return String(F("Gateway Time-out")).c_str();
+    case 505: return String(F("HTTP Version not supported")).c_str();
     default:  return "";
   }
 }
@@ -336,25 +336,25 @@ AsyncFileResponse::~AsyncFileResponse(){
 }
 
 void AsyncFileResponse::_setContentType(const String& path){
-  if (path.endsWith(".html")) _contentType = "text/html";
-  else if (path.endsWith(".htm")) _contentType = "text/html";
-  else if (path.endsWith(".css")) _contentType = "text/css";
-  else if (path.endsWith(".json")) _contentType = "text/json";
-  else if (path.endsWith(".js")) _contentType = "application/javascript";
-  else if (path.endsWith(".png")) _contentType = "image/png";
-  else if (path.endsWith(".gif")) _contentType = "image/gif";
-  else if (path.endsWith(".jpg")) _contentType = "image/jpeg";
-  else if (path.endsWith(".ico")) _contentType = "image/x-icon";
-  else if (path.endsWith(".svg")) _contentType = "image/svg+xml";
-  else if (path.endsWith(".eot")) _contentType = "font/eot";
-  else if (path.endsWith(".woff")) _contentType = "font/woff";
-  else if (path.endsWith(".woff2")) _contentType = "font/woff2";
-  else if (path.endsWith(".ttf")) _contentType = "font/ttf";
-  else if (path.endsWith(".xml")) _contentType = "text/xml";
-  else if (path.endsWith(".pdf")) _contentType = "application/pdf";
-  else if (path.endsWith(".zip")) _contentType = "application/zip";
-  else if(path.endsWith(".gz")) _contentType = "application/x-gzip";
-  else _contentType = "text/plain";
+  if (path.endsWith(".html")) _contentType = String(F("text/html"));
+  else if (path.endsWith(".htm")) _contentType = String(F("text/html"));
+  else if (path.endsWith(".css")) _contentType = String(F("text/css"));
+  else if (path.endsWith(".json")) _contentType = String(F("text/json"));
+  else if (path.endsWith(".js")) _contentType = String(F("application/javascript"));
+  else if (path.endsWith(".png")) _contentType = String(F("image/png"));
+  else if (path.endsWith(".gif")) _contentType = String(F("image/gif"));
+  else if (path.endsWith(".jpg")) _contentType = String(F("image/jpeg"));
+  else if (path.endsWith(".ico")) _contentType = String(F("image/x-icon"));
+  else if (path.endsWith(".svg")) _contentType = String(F("image/svg+xml"));
+  else if (path.endsWith(".eot")) _contentType = String(F("font/eot"));
+  else if (path.endsWith(".woff")) _contentType = String(F("font/woff"));
+  else if (path.endsWith(".woff2")) _contentType = String(F("font/woff2"));
+  else if (path.endsWith(".ttf")) _contentType = String(F("font/ttf"));
+  else if (path.endsWith(".xml")) _contentType = String(F("text/xml"));
+  else if (path.endsWith(".pdf")) _contentType = String(F("application/pdf"));
+  else if (path.endsWith(".zip")) _contentType = String(F("application/zip"));
+  else if(path.endsWith(".gz")) _contentType = String(F("application/x-gzip"));
+  else _contentType = String(F("text/plain"));
 }
 
 AsyncFileResponse::AsyncFileResponse(FS &fs, const String& path, const String& contentType, bool download){
@@ -363,7 +363,7 @@ AsyncFileResponse::AsyncFileResponse(FS &fs, const String& path, const String& c
 
   if(!download && !fs.exists(_path) && fs.exists(_path+".gz")){
     _path = _path+".gz";
-    addHeader("Content-Encoding", "gzip");
+    addHeader(String(F("Content-Encoding")), "gzip");
   }
 
   _content = fs.open(_path, "r");
@@ -396,7 +396,7 @@ AsyncFileResponse::AsyncFileResponse(File content, const String& path, const Str
   _contentLength = _content.size();
 
   if(!download && String(_content.name()).endsWith(".gz") && !path.endsWith(".gz"))
-    addHeader("Content-Encoding", "gzip");
+    addHeader(String(F("Content-Encoding")), "gzip");
 
   if(contentType == "")
     _setContentType(path);
