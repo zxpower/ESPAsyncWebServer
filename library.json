@@ -19,7 +19,7 @@
   [
     {
       "name": "ESPAsyncTCP",
-      "version": "https://github.com/zxpower/ESPAsyncTCP.git#rysta-stable",
+      "version": "https://github.com/zxpower/ESPAsyncTCP.git#rysta-stable"
     }
   ]
 }
