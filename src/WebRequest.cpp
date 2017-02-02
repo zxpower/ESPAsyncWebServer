@@ -727,7 +727,7 @@ void AsyncWebServerRequest::requestAuthentication(const char * realm, bool isDig
     r->addHeader(String(F("WWW-Authenticate")), String(F("Basic realm=\"Login Required\"")));
   } else if(!isDigest){
     String header = String(F("Basic realm=\""));
-    header.concat(String(F(realm)));
+    header.concat(realm);
     header.concat(String(F("\"")));
     r->addHeader(String(F("WWW-Authenticate")), header);
   } else {
